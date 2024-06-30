@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { OpenAIApi } from "openai";
+import { Configuration, OpenAIApi } from "openai";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
 
-  const openai = new OpenAIApi({
+  const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   });
+  const openai = new OpenAIApi(configuration);
 
   const sendMessage = async () => {
     const userMessage = { role: "user", content: input };
